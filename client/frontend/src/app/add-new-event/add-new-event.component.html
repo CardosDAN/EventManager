@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="card p-2">
+    <form #EventForm="ngForm" (ngSubmit)="addEvent(EventForm)">
+      <div class="mb-3">
+        <div class="mb-3">
+          <label for="event_name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="event_name" [(ngModel)]="event.event_name" name="event_name">
+        </div>
+        <div class="mb-3">
+          <label for="event_description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="event_description" [(ngModel)]="event.event_description" name="event_description"
+                 aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="event_category" class="form-label">Category</label>
+          <input type="text" class="form-control" id="event_category" [(ngModel)]="event.event_category" name="event_category"
+                 aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="event_location" class="form-label">Location</label>
+          <input type="text" class="form-control" id="event_location" [(ngModel)]="event.event_location" name="event_location"
+                 aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+          <label for="date_from" class="form-label">Date From</label>
+          <input type="datetime-local" class="form-control" id="date_from" [(ngModel)]="event.date_from" name="date_from"
+                 aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+          <label for="date_to" class="form-label">Date To</label>
+          <input type="datetime-local" class="form-control" id="date_to" [(ngModel)]="event.date_to" name="date_to"
+                 aria-describedby="emailHelp">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

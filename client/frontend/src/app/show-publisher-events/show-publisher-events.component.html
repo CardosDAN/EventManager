@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col" *ngFor="let event of events">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">{{ event.event_name }}</h5>
+          <p class="card-text">{{ event.event_description }}</p>
+          <p class="card-text"><small class="text-muted">{{ event.date_from }}</small></p>
+          <button class="btn btn-danger" (click)="deleteEvent(event.id)">Delete</button>
+<!--          <button class="btn btn-success" (click)="updateEvent(event.id)">Update</button>-->
+          <button class="btn btn-primary" (click)="showEvent(event.id, event.user.id)">Show</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

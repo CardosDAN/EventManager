@@ -1,0 +1,45 @@
+<div class="container mt-5">
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+
+      <div class="card" *ngIf="publisher">
+        <h1>Publisher Info</h1>
+        <div *ngFor="let image of publisher.image">
+          <div class="col-sm-5">
+            <img [src]="image.url" class="card-img-top mb-1" alt="...">
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ publisher.publisher_name }}</h5>
+          <p class="card-text">{{ publisher.publisher_description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col shadow">
+      <div class="container ">
+        <div class="card-body">
+          <label>Event Name</label>
+          <h5 class="card-title">{{event.event_name}}</h5>
+          <label>Event starting date</label>
+          <p class="card-text">{{event.date_from}}</p>
+          <label>Event category</label>
+          <p> {{event.event_category}}</p>
+        </div>
+      </div>
+
+      <div class=" container">
+        <div class="card-body">
+          <label>Event description</label>
+          <p class="card-text">{{event.event_description}}</p>
+          <label>Event location</label>
+          <p> {{event.event_location}}</p>
+          <p> Made By {{event.user.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
