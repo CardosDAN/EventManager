@@ -57,5 +57,7 @@ export class UserService {
     return this.httpClient.post(`${this.PATH_OF_API}/users/${userId}/assign-role`, { roleName });
   }
 
-
+  public getUserById(userId: number) {
+    return this.httpClient.get(`${this.PATH_OF_API}/users/${userId}`);
+  }
 }

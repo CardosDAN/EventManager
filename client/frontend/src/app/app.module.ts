@@ -19,6 +19,7 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 import { ShowPublisherEventsComponent } from './show-publisher-events/show-publisher-events.component';
 import { EventViewDetailsComponent } from './event-view-details/event-view-details.component';
 import { RegisterComponent } from './register/register.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
     ShowPublisherEventsComponent,
     EventViewDetailsComponent,
     RegisterComponent,
+    UserDetailsComponent,
 
   ],
   imports: [
