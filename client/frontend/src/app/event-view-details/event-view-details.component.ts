@@ -76,6 +76,21 @@ export class EventViewDetailsComponent implements OnInit{
     );
   }
 
+  registerToEvent(eventId: number) {
+    this.eventService.registerToEvent(eventId).subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response === eventId){
+          alert("User has been register with success!");
+          window.location.reload();
+        }
+      },
+      (error : any) => {
+        console.error('Error at registration:', error);
+      }
+    );
+  }
+
 
 
 }

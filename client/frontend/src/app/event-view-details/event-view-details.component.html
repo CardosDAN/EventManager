@@ -20,6 +20,7 @@
     <div class="col shadow">
       <div class="container">
         <button *ngIf="isUserRegistered" class="btn btn-primary m-1 float-end" (click)="unregisterEvent(event.id)">I don't want to go anymore</button>
+        <button *ngIf="!isUserRegistered" class="btn btn-outline-info m-1 float-end" (click)="registerToEvent(event.id)">Go to event</button>
         <div class="card-body">
           <label>Event Name</label>
           <h5 class="card-title">{{event.event_name}}</h5>
