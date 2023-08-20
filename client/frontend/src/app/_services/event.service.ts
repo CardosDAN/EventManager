@@ -46,4 +46,8 @@ export class EventService {
   public checkEntry(){
     return this.httpClient.get<Event>(this.apiUrl + "/check");
   }
+
+  public registerToEvent(eventId: number){
+    return this.httpClient.post<Event>(this.apiUrl + "/user/register/" + eventId, null);
+  }
 }

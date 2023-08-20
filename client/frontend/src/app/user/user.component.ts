@@ -43,4 +43,18 @@ export class UserComponent implements OnInit{
     this.router.navigate(['/eventViewDetails', {eventId: eventId, publisherId: publisherId}]);
   }
 
+  registerToEvent(eventId: number) {
+    this.eventService.registerToEvent(eventId).subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response === eventId){
+          alert("User has been register with success!");
+        }
+      },
+      (error : any) => {
+        console.error('Error at registration:', error);
+      }
+    );
+  }
+
 }
