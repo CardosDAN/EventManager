@@ -13,6 +13,7 @@ import api.api.Model.*;
 import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/events")
@@ -112,9 +113,22 @@ public class EventController {
     }
 
     @GetMapping("/isRegistered/{eventId}")
+    @RolesAllowed({"ROLE_USER", "ROLE_PUBLISHER"})
     public ResponseEntity<?> isRegisteredForEvent(@PathVariable Integer eventId) {
         boolean isRegistered = eventService.isUserRegisteredForEvent(eventId);
         return ResponseEntity.ok(isRegistered);
+    }
+
+    @GetMapping("/event/registrations/{event_id}")
+    @RolesAllowed({"ROLE_USER", "ROLE_PUBLISHER"})
+    public ResponseEntity<Set<User>> getUsersRegisteredForEvent(@PathVariable("event_id") Integer eventId) {
+        try {
+            Events event = eventService.get(eventId);
+            Set<User> registeredUsers = event.getParticipants();
+            return ResponseEntity.ok(registeredUsers);
+        } catch (EventNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import {Publisher} from "../_model/publisher.model";
 import {ImageProcessingService} from "../_services/image-processing.service";
 import {map} from "rxjs/operators";
 import {EventService} from "../_services/event.service";
+import {User} from "../_model/user.model";
 
 @Component({
   selector: 'app-event-view-details',
@@ -19,7 +20,7 @@ export class EventViewDetailsComponent implements OnInit{
   publisher: Publisher | undefined;
   // @ts-ignore
   isUserRegistered: boolean;
-
+  participants: User[] = [];
 
 
   constructor(private activatedRoute: ActivatedRoute, private publisherService: PublisherService
@@ -30,6 +31,7 @@ export class EventViewDetailsComponent implements OnInit{
     this.event = this.activatedRoute.snapshot.data['event'];
     this.loadPublisherInfo(this.event.user.id);
     this.checkUserRegistration(this.event.id);
+    this.getRegisteredUsers(this.event.id);
 
     console.log(this.event);
   }
@@ -87,6 +89,17 @@ export class EventViewDetailsComponent implements OnInit{
       },
       (error : any) => {
         console.error('Error at registration:', error);
+      }
+    );
+  }
+
+  getRegisteredUsers(eventId: number) {
+    this.eventService.getEventParticipants(eventId).subscribe(
+      (participants: User[]) => {
+        this.participants = participants;
+      },
+      (error: any) => {
+        console.error('Error fetching event participants:', error);
       }
     );
   }
