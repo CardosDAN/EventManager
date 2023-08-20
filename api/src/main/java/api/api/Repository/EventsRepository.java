@@ -21,4 +21,6 @@ public interface EventsRepository extends  JpaRepository<Events, Integer>{
     List<Events> findEventsWithFilters(EventFilterDTO filter);
 
     boolean existsByUserId(Integer userId);
+
+    boolean existsByIdAndParticipants_Id(Integer eventId, Integer userId);
 }
