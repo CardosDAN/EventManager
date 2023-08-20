@@ -43,4 +43,6 @@ export class UserComponent implements OnInit{
     this.router.navigate(['/eventViewDetails', {eventId: eventId, publisherId: publisherId}]);
   }
 
+
+
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Event} from "../_model/event.model";
 import {Observable} from "rxjs";
+import {User} from "../_model/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,24 @@ export class EventService {
   public checkEntry(){
     return this.httpClient.get<Event>(this.apiUrl + "/check");
   }
+
+  public registerToEvent(eventId: number){
+    return this.httpClient.post<Event>(this.apiUrl + "/user/register/" + eventId, null);
+  }
+
+  public unregisterEvent(eventId: number){
+    return this.httpClient.delete(this.apiUrl + "/user/unregister/" + eventId);
+  }
+
+  public isUserRegisteredForEvent(eventId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(this.apiUrl + `/isRegistered/${eventId}`);
+  }
+
+  getEventParticipants(eventId: number): Observable<User[]> {
+    const url = `${this.apiUrl}/event/registrations/${eventId}`;
+    return this.httpClient.get<User[]>(url);
+  }
+
+
+
 }
