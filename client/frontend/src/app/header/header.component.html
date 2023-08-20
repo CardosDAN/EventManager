@@ -18,7 +18,7 @@
              *ngIf="userService.roleMatch(['ROLE_USER'])"
           >User</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn()">
           <button *ngIf="!isPublisher()"  class="btn btn-primary" (click)="assignPublisherRole()">Become a Publisher</button>
         </li>
       </ul>

@@ -92,4 +92,13 @@ public class EventController {
         }
     }
 
+
+    @PostMapping("/user/register/{eventId}/")
+    public ResponseEntity<String> registerUserForEvent(
+            @PathVariable Integer eventId) throws UserNotFoundException, EventNotFoundException {
+        User authUser = userService.getCurrentUser();
+        eventService.registerUserForEvent(eventId, authUser.getId());
+        return ResponseEntity.ok("User registered for event.");
+    }
+
 }

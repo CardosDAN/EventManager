@@ -1,10 +1,12 @@
 package api.api.Service;
 
 import api.api.DTO.EventFilterDTO;
+import api.api.Exception.UserNotFoundException;
 import api.api.Model.Events;
 import api.api.Model.User;
 import api.api.Repository.EventsRepository;
 import api.api.Exception.EventNotFoundException;
+import api.api.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class EventService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     public List<Events> listAll() {
         return (List<Events>) eventsRepository.findAll();
@@ -73,5 +78,15 @@ public class EventService {
     public boolean hasEventByUserId() {
         User authUser = userService.getCurrentUser();
         return eventsRepository.existsByUserId(authUser.getId());
+    }
+
+    public void registerUserForEvent(Integer eventId, Integer userId) throws EventNotFoundException, UserNotFoundException {
+        Events event = eventsRepository.findById(eventId)
+                .orElseThrow(() -> new EventNotFoundException("Event not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        event.getParticipants().add(user);
+        eventsRepository.save(event);
     }
 }
