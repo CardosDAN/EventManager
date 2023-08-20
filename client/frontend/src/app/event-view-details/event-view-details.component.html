@@ -18,7 +18,8 @@
     </div>
 
     <div class="col shadow">
-      <div class="container ">
+      <div class="container">
+        <button *ngIf="isUserRegistered" class="btn btn-primary m-1 float-end" (click)="unregisterEvent(event.id)">I don't want to go anymore</button>
         <div class="card-body">
           <label>Event Name</label>
           <h5 class="card-title">{{event.event_name}}</h5>

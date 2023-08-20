@@ -50,4 +50,14 @@ export class EventService {
   public registerToEvent(eventId: number){
     return this.httpClient.post<Event>(this.apiUrl + "/user/register/" + eventId, null);
   }
+
+  public unregisterEvent(eventId: number){
+    return this.httpClient.delete(this.apiUrl + "/user/unregister/" + eventId);
+  }
+
+  public isUserRegisteredForEvent(eventId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(this.apiUrl + `/isRegistered/${eventId}`);
+  }
+
+
 }

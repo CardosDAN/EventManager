@@ -89,4 +89,19 @@ public class EventService {
         event.getParticipants().add(user);
         eventsRepository.save(event);
     }
+
+    public void unregisterUserForEvent(Integer eventId, Integer userId) throws EventNotFoundException, UserNotFoundException {
+        Events event = eventsRepository.findById(eventId)
+                .orElseThrow(() -> new EventNotFoundException("Event not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        event.getParticipants().remove(user);
+        eventsRepository.save(event);
+    }
+
+    public boolean isUserRegisteredForEvent(Integer eventId) {
+        User authUser = userService.getCurrentUser();
+        return eventsRepository.existsByIdAndParticipants_Id(eventId, authUser.getId());
+    }
 }

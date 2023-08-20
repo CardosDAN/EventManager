@@ -102,4 +102,19 @@ public class EventController {
         return ResponseEntity.ok(eventId);
     }
 
+    @DeleteMapping("/user/unregister/{eventId}")
+    @RolesAllowed({"ROLE_USER", "ROLE_PUBLISHER"})
+    public ResponseEntity<Integer> unregisterUserForEvent(
+            @PathVariable Integer eventId) throws UserNotFoundException, EventNotFoundException {
+        User authUser = userService.getCurrentUser();
+        eventService.unregisterUserForEvent(eventId, authUser.getId());
+        return ResponseEntity.ok(eventId);
+    }
+
+    @GetMapping("/isRegistered/{eventId}")
+    public ResponseEntity<?> isRegisteredForEvent(@PathVariable Integer eventId) {
+        boolean isRegistered = eventService.isUserRegisteredForEvent(eventId);
+        return ResponseEntity.ok(isRegistered);
+    }
+
 }
