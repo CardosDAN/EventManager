@@ -8,6 +8,7 @@ import {PublisherComponent} from './publisher/publisher.component';
 import {UserComponent} from './user/user.component';
 import {LoginComponent} from './login/login.component';
 import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from "./footer/footer.component";
 import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -30,6 +31,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     UserComponent,
     LoginComponent,
     HeaderComponent,
+    FooterComponent,
     ForbiddenComponent,
     AddNewEventComponent,
     ShowPublisherEventsComponent,
