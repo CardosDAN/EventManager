@@ -1,64 +1,51 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
 <!--  <div class="container-fluid">-->
-<!--    <a class="navbar-brand" href="#">Event Manager</a>-->
+<!--    <a class="navbar-brand" routerLink="/home">EventManager</a>-->
 <!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"-->
 <!--            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--      <span class="navbar-toggler-icon"></span>-->
 <!--    </button>-->
 <!--    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">-->
 <!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" routerLink="/publisher"-->
-<!--          *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])"-->
-<!--          >Publisher</a>-->
-<!--        </li>-->
 <!--        <li class="nav-item" *ngIf="isLoggedIn()">-->
 <!--          <a class="nav-link active" aria-current="page" routerLink="/user"-->
 <!--             *ngIf="userService.roleMatch(['ROLE_USER'])"-->
-<!--          >User</a>-->
+<!--          >All events</a>-->
 <!--        </li>-->
 <!--        <li class="nav-item" *ngIf="isLoggedIn()">-->
-<!--          <button *ngIf="!isPublisher()"  class="btn btn-primary" (click)="assignPublisherRole()">Become a Publisher</button>-->
+<!--          <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasRight">Options</a>-->
 <!--        </li>-->
 <!--      </ul>-->
+
 <!--      <button *ngIf="!isLoggedIn()" class="btn btn-success" type="button" routerLink="/login">Login</button>-->
-<!--      <button *ngIf="isLoggedIn()" class="btn btn-info m-1" type="button" routerLink="/userDetails">Profile</button>-->
-<!--      <button *ngIf="isLoggedIn()" class="btn btn-danger" type="button" (click)="logout()">Logout</button>-->
-
+<!--      <a *ngIf="isLoggedIn()" type="button" routerLink="/userDetails"><i class="bi bi-person text-white fs-4"></i></a>/-->
+<!--      <a *ngIf="isLoggedIn()" type="button" (click)="logout()"><i class="bi bi-door-closed text-danger fs-4"></i></a>-->
 <!--    </div>-->
+
 <!--  </div>-->
 <!--</nav>-->
 
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn()">-->
-<!--  <div class="container-fluid">-->
-<!--    <a class="navbar-brand" href="#">Options</a>-->
-<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
-<!--      <div class="navbar-nav">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>-->
-<!--        </li>-->
-<!--        <a class="nav-link active" aria-current="page" routerLink="/addNewEvent"-->
-<!--           *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])">Add Events</a>-->
-<!--        <a class="nav-link active" aria-current="page" routerLink="/showPublisherEvents"-->
-<!--           *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])">Publisher Events</a>-->
-
-<!--      </div>-->
-<!--    </div>-->
+<!--<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" *ngIf="isLoggedIn()">-->
+<!--  <div class="offcanvas-header">-->
+<!--    <h5 id="offcanvasRightLabel">Options</h5>-->
+<!--    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
 <!--  </div>-->
-<!--</nav>-->
+<!--  <div class="offcanvas-body" *ngIf="isLoggedIn()">-->
+<!--    <a class="nav-link active" aria-current="page" routerLink="/addNewEvent"-->
+<!--       *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])">Add Events</a>-->
+<!--    <a class="nav-link active" aria-current="page" routerLink="/showPublisherEvents"-->
+<!--       *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])">Publisher Events</a>-->
+<!--    <button *ngIf="!isPublisher()"  class="btn btn-primary" (click)="assignPublisherRole()">Become a Publisher</button>-->
+<!--    <a class="nav-link active" aria-current="page" routerLink="/publisher"-->
+<!--       *ngIf="userService.roleMatch(['ROLE_PUBLISHER'])"-->
+<!--    >Publisher</a>-->
+<!--  </div>-->
+<!--</div>-->
 
 
-<nav class="navbar navbar-expand-lg" data-spy="scroll" data-offset="51">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
-      Festava Live
-    </a>
-
-    <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>
+    <a class="navbar-brand" href="index.html">Festava Live</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,23 +57,18 @@
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_1">Home</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_2">About</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_3">Artists</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_4">Schedule</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_5">Pricing</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link click-scroll" href="#section_6">Contact</a>
         </li>
@@ -96,3 +78,4 @@
     </div>
   </div>
 </nav>
+
