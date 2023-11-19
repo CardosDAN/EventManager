@@ -21,6 +21,7 @@ import { ShowPublisherEventsComponent } from './show-publisher-events/show-publi
 import { EventViewDetailsComponent } from './event-view-details/event-view-details.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { ScrollDirective } from './scroll.directive';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     EventViewDetailsComponent,
     RegisterComponent,
     UserDetailsComponent,
+    ScrollDirective,
 
   ],
   imports: [
