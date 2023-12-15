@@ -35,6 +35,24 @@ export class ImageProcessingService {
 
   }
 
+  public createImage(publisher: Publisher){
+    const publisherImage: any[] =  publisher.image;
+
+    const imageFileData =  publisherImage[0];
+    const imageBlob = this.dateUrlToBlob(imageFileData.picByte, imageFileData.type);
+
+    const  imageFile = new File([imageBlob], imageFileData.name, {type: imageFileData.type});
+
+    const finalFileImage : Image = {
+      file: imageFile,
+      url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile))
+    };
+
+    // @ts-ignore
+    publisher.image = finalFileImage;
+    return publisher;
+  }
+
   // @ts-ignore
   public dateUrlToBlob(picBytes, imageType){
     const byteString = window.atob(picBytes);

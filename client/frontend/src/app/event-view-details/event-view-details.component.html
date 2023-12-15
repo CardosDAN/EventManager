@@ -1,54 +1,56 @@
-<div class="container mt-5">
 
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
+<section class="schedule-section section-padding" id="section_4">
+  <div class="container">
+    <div class="row">
 
-      <div class="card" *ngIf="publisher">
-        <h1>Publisher Info</h1>
-        <div *ngFor="let image of publisher.image">
-          <div class="col-sm-5">
-            <img [src]="image.url" class="card-img-top mb-1" alt="...">
-          </div>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ publisher.publisher_name }}</h5>
-          <p class="card-text">{{ publisher.publisher_description }}</p>
-        </div>
+      <div class="col-12 text-center">
+        <h1 class="text-white mb-4">{{event.event_name}}</h1>
+        <h2 class="text-dark mb-4">{{event.event_description}}</h2>
+        <p class="text-warning">{{event.event_location}}</p>
+        <p class="text-light"> Made By {{event.user.email}}</p>
+        <label >Event starting date</label>
+        <p class="text-warning">{{event.date_from}}</p>
       </div>
     </div>
 
-    <div class="col shadow">
-      <div class="container">
-        <button *ngIf="isUserRegistered" class="btn btn-primary m-1 float-end" (click)="unregisterEvent(event.id)">I don't want to go anymore</button>
-        <button *ngIf="!isUserRegistered" class="btn btn-outline-info m-1 float-end" (click)="registerToEvent(event.id)">Go to event</button>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary m-1 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          See who is going
-        </button>
-        <div class="card-body">
-          <label>Event Name</label>
-          <h5 class="card-title">{{event.event_name}}</h5>
-          <label>Event starting date</label>
-          <p class="card-text">{{event.date_from}}</p>
-          <label>Event category</label>
-          <p> {{event.event_category}}</p>
-        </div>
-      </div>
+    <button *ngIf="isUserRegistered" class="btn btn-danger m-1 float-end" (click)="unregisterEvent(event.id)">I don't want to go anymore</button>
+    <button *ngIf="!isUserRegistered" class="btn btn-outline-info m-1 float-end" (click)="registerToEvent(event.id)">Go to event</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-warning m-1 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      See who is going
+    </button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-warning m-1 float-start" data-bs-toggle="modal" data-bs-target="#modalPublisher">
+      Publisher info
+    </button>
+  </div>
+</section>
 
-      <div class=" container">
-        <div class="card-body">
-          <label>Event description</label>
-          <p class="card-text">{{event.event_description}}</p>
-          <label>Event location</label>
-          <p> {{event.event_location}}</p>
-          <p> Made By {{event.user.email}}</p>
+<!-- Modal -->
+<div class="modal fade" id="modalPublisher" tabindex="-1" aria-labelledby="modalPublisherLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPublisherLabel">Publisher info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" *ngIf="publisher">
+          <h1>Publisher Info</h1>
+          <div *ngFor="let image of publisher.image">
+            <div class="col-sm-5">
+              <img [src]="image.url" class="card-img-top mb-1" alt="...">
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ publisher.publisher_name }}</h5>
+            <p class="card-text">{{ publisher.publisher_description }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
 
 
 

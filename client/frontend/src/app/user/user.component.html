@@ -1,49 +1,94 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-sm-5">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Date From</span>
-          <input class="form-control" type="datetime-local" id="dateFrom" [(ngModel)]="dateFrom">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon2">Date To:</span>
-          <input class="form-control" type="datetime-local" id="dateTo" [(ngModel)]="dateTo">
-        </div>
-    </div>
-    <div class="col-sm-5">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Category:</span>
-        <input class="form-control" type="text" id="category" [(ngModel)]="category">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon4">Location:</span>
-        <input class="form-control" type="text" id="location" [(ngModel)]="location">
-      </div>
-      <button class="btn btn-primary float-end" (click)="applyFilters()">Apply Filters</button>
-    </div>
-  </div>
-</div>
+<section class="about-section section-padding" id="section_2">
+  <div class="container">
+    <div class="row">
 
-<div class="container mt-5">
-  <h2 >Events</h2>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let event of events">
-      <div class="card h-100">
-        <p>Organizer: {{ event.user.email }}</p>
-        <div class="card-body">
-          <h5 class="card-title">{{ event.event_name }}</h5>
-          <p class="card-text">{{ event.event_description }}</p>
-        </div>
-        <div class="row m-1">
-          <div class="col-sm-4">
-            <button class="btn btn-primary" (click)="showEvent(event.id, event.user.id)">See More</button>
+      <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
+        <div class="services-info">
+          <h2 class="text-white mb-4">Filter Event Manager 2023</h2>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Date From</span>
+                  <input class="form-control" type="datetime-local" id="dateFrom" [(ngModel)]="dateFrom">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon2">Date To:</span>
+                  <input class="form-control" type="datetime-local" id="dateTo" [(ngModel)]="dateTo">
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon3">Category:</span>
+                  <input class="form-control" type="text" id="category" [(ngModel)]="category">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon4">Location:</span>
+                  <input class="form-control" type="text" id="location" [(ngModel)]="location">
+                </div>
+                <button class="btn btn-outline-warning float-end" (click)="applyFilters()">Apply Filters</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">{{ event.date_from }} - {{ event.date_to }}</small>
+      </div>
+
+      <div class="col-lg-6 col-12">
+        <div class="about-text-wrap">
+          <img src="assets/images/pexels-alexander-suhorucov-6457579.jpg" class="about-image img-fluid">
+
+          <div class="about-text-info d-flex">
+            <div class="d-flex">
+              <i class="about-text-icon bi-person"></i>
+            </div>
+
+
+            <div class="ms-4">
+              <h3>Find your favorite event</h3>
+
+              <p class="mb-0">your amazing festival experience with us</p>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
-</div>
+</section>
+
+<section class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let event of events">
+        <div class="card text-dark card-has-bg click-col"
+             style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
+          <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+               alt="">
+          <div class="card-img-overlay d-flex flex-column">
+            <div class="card-body">
+              <small class="card-meta mb-2">{{ event.user.email }}</small>
+              <h4 class="card-title mt-0 ">
+                <a class="text-dark" (click)="showEvent(event.id, event.user.id)">{{ event.event_name }}</a>
+              </h4>
+              <small><i class="far fa-clock"></i> {{ event.date_from }} - {{ event.date_to }}</small>
+            </div>
+            <div class="card-footer" *ngIf="publisherInfo[event.user.id]">
+            <div class="media" >
+              <img class="mr-3 rounded-circle "
+                   [src]="publisherInfo[event.user.id].image.url"
+                   alt="Generic placeholder image" style="max-width:50px">
+            </div>
+            <div class="media-body">
+              <h6 class="my-0 text-dark d-block">{{ publisherInfo[event.user.id].publisher_name }}</h6>
+              <small>{{ publisherInfo[event.user.id].publisher_description }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+</section>
